@@ -14,7 +14,7 @@ python3 populate_database.py
 python3 query_data.py "Query/Prompt"
 ```
 
-To run tests, run the below command. Depending on python version, this will change!
+From now, just run the tests just like any other python file instead of pytest!
 ```
-python3 -m pytest -s -q test_rag.py
+python3 test_rag.py
 ```
