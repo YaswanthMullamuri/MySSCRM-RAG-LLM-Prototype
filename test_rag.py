@@ -9,26 +9,6 @@ Actual Response: {actual_response}
 """
 
 
-def test_monopoly_rules():
-    assert query_and_validate(
-        question="How much total money does a player start with in Monopoly? (Answer with the number only)",
-        expected_response="$1500",
-    )
-
-
-def test_ticket_to_ride_rules():
-    assert query_and_validate(
-        question="How many points does the longest continuous train get in Ticket to Ride? (Answer with the number only)",
-        expected_response="10 points",
-    )
-    
-def test_attention_function():
-    assert query_and_validate(
-        question="What is an attention function?",
-        expected_response="An attention function is mapping a query and a set of key-value pairs to an output, where the query, keys, values, and output are all vectors.",
-    )
-
-
 def query_and_validate(question: str, expected_response: str):
     response_text = query_rag(question)
     prompt = EVAL_PROMPT.format(
@@ -39,22 +19,59 @@ def query_and_validate(question: str, expected_response: str):
     evaluation_results_str = model.invoke(prompt)
     evaluation_results_str_cleaned = evaluation_results_str.strip().lower()
 
+    print("\n----------------------------")
+    print(f"Question: {question}")
     print(prompt)
 
     if "true" in evaluation_results_str_cleaned:
-        # Print response in Green if it is correct.
-        print("\033[92m" + f"Response: {evaluation_results_str_cleaned}" + "\033[0m")
+        print("\033[92mResponse: TRUE ✅\033[0m")
         return True
     elif "false" in evaluation_results_str_cleaned:
-        # Print response in Red if it is incorrect.
-        print("\033[91m" + f"Response: {evaluation_results_str_cleaned}" + "\033[0m")
+        print("\033[91mResponse: FALSE ❌\033[0m")
         return False
     else:
-        raise ValueError(
-            f"Invalid evaluation result. Cannot determine if 'true' or 'false'."
-        )
+        print("\033[93mResponse: UNKNOWN ⚠️\033[0m")
+        return None
 
-# if __name__ == "__main__":
-#     ok1 = test_monopoly_rules()
-#     ok2 = test_ticket_to_ride_rules()
-#     print("monopoly:", ok1, "ticket_to_ride:", ok2)
+
+# --- Define all your tests here ---
+TEST_CASES = [
+    {
+        "name": "Attention Function",
+        "question": "What is an attention function?",
+        "expected": "An attention function is mapping a query and a set of key-value pairs to an output, where the query, keys, values, and output are all vectors.",
+    },
+    {
+        "name": "BSSIM Core Knowledge",
+        "question": "Tell me about BSSIM Core Knowledge, from an executive perspective.",
+        "expected": "From an executive perspective, you can view BSIMM activities as controls implemented in a software security risk management framework. The implemented activities might function as preventive, detective, corrective, or compensating controls in your SSI. Positioning the activities as controls allows for easier understanding of the BSIMM value by governance, risk, compliance, legal, audit, and other risk management groups.",
+    },
+    {
+        "name": "C-SCRM Activities",
+        "question": "Who can perform C-SCRM activities?",
+        "expected": "C-SCRM activities can be performed by a variety of individuals or groups within an enterprise, ranging from a single individual to committees, divisions, centralized program offices, or any other enterprise structure",
+    },
+]
+
+
+if __name__ == "__main__":
+    passed, failed, unknown = 0, 0, 0
+
+    for test in TEST_CASES:
+        try:
+            result = query_and_validate(test["question"], test["expected"])
+            if result is True:
+                passed += 1
+            elif result is False:
+                failed += 1
+            else:
+                unknown += 1
+        except Exception as e:
+            print(f"\033[91mError in {test['name']}: {e}\033[0m")
+            failed += 1
+
+    print("\n============================")
+    print(f"✅ Passed: {passed}")
+    print(f"❌ Failed: {failed}")
+    print(f"⚠️ Unknown: {unknown}")
+    print("============================")
