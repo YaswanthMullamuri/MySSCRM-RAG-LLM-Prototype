@@ -1,0 +1,28 @@
+Model,Run,Test Name,Result
+gemma3:1b,1,Attention Function,True
+gemma3:1b,1,BSSIM Core Knowledge,True
+gemma3:1b,1,C-SCRM Activities,True
+gemma3:1b,1,Self Attestation Form,True
+gemma3:1b,1,Self Attestation Memorandum,True
+gemma3:1b,1,BSSIM Report,False
+gemma3:1b,1,BSSIM Report - Security Feature Review,False
+gemma3:1b,1,BSSIM Report - Compliance and Policy,False
+gemma3:1b,1,CNCF Pdf,True
+llama3.3:70b,1,Attention Function,False
+llama3.3:70b,1,BSSIM Core Knowledge,False
+llama3.3:70b,1,C-SCRM Activities,True
+llama3.3:70b,1,Self Attestation Form,False
+llama3.3:70b,1,Self Attestation Memorandum,False
+llama3.3:70b,1,BSSIM Report,False
+llama3.3:70b,1,BSSIM Report - Security Feature Review,False
+llama3.3:70b,1,BSSIM Report - Compliance and Policy,False
+llama3.3:70b,1,CNCF Pdf,True
+mistral,1,Attention Function,True
+mistral,1,BSSIM Core Knowledge,True
+mistral,1,C-SCRM Activities,True
+mistral,1,Self Attestation Form,True
+mistral,1,Self Attestation Memorandum,False
+mistral,1,BSSIM Report,False
+mistral,1,BSSIM Report - Security Feature Review,False
+mistral,1,BSSIM Report - Compliance and Policy,False
+mistral,1,CNCF Pdf,True
