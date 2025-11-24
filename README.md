@@ -13,8 +13,8 @@
     - Run the following commands in the project folder.
     - ``` python -m venv myenv ```
     - Activate it.
-        - Windows: ``` venv\Scripts\activate ```
-        - Mac/Linux: ``` source venv/bin/activate ```
+        - Windows: ``` myvenv\Scripts\activate ```
+        - Mac/Linux: ``` source myvenv/bin/activate ```
     - Install requirements.txt (After you're in a virtual environment, these dependencies will only be relevant to the current project.)
     - Virtual Environment Deactivation command: ``` deactivate ```
 ```
