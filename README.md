@@ -11,7 +11,7 @@
     - Command to pull a model: ``` ollama pull {modelname} ```
 - Create a virtual environment if required. A virtual environment is used to create an isolated Python environment so each project can have its own dependencies without affecting the system or other projects.
     - Run the following commands in the project folder.
-    - ``` python -m venv myenv ```
+    - ``` python -m venv myvenv ```
     - Activate it.
         - Windows: ``` myvenv\Scripts\activate ```
         - Mac/Linux: ``` source myvenv/bin/activate ```
