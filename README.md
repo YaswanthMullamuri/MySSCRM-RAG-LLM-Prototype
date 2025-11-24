@@ -38,3 +38,4 @@ To run tests and compare with multiple models:
 ```
 python3 multi_model_rag_runner.py {number}
 ```
+- The {number} in the above command specifies how many testing iterations you want to go through.
